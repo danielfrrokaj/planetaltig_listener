@@ -16,3 +16,6 @@
 ## v1.2.0 – 2025-08-27
 - Improved the user interface of the popup.html and styles.css to present click statistics in a dashboard-like format with distinct cards for each timeframe.
 - Updated popup.js to correctly target the new elements for displaying statistics.
+
+## v1.3.0 – 2025-08-27
+- Renamed the extension from "Dyad Chrome Extension Template" to "Website listener" in manifest.json and popup.html.
