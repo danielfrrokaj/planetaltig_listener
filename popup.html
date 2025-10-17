@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Extension Popup</title>
+  <title>Dyad Extension Dashboard</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Dyad Chrome Extension</h1>
-  <p>Search link clicks on m.planetaltig.com:</p>
-  <p id="clicksLastHour">Last 1 hour: 0</p>
-  <p id="clicksLast3Hours">Last 3 hours: 0</p>
-  <p id="clicksLast6Hours">Last 6 hours: 0</p>
+  <h1>Search Link Clicks</h1>
+  <div class="dashboard-container">
+    <div class="stat-card" id="clicksLastHour">
+      <span>Last 1 hour:</span> <span>0</span>
+    </div>
+    <div class="stat-card" id="clicksLast3Hours">
+      <span>Last 3 hours:</span> <span>0</span>
+    </div>
+    <div class="stat-card" id="clicksLast6Hours">
+      <span>Last 6 hours:</span> <span>0</span>
+    </div>
+  </div>
 
   <script src="popup.js"></script>
 </body>

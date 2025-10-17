@@ -12,3 +12,7 @@
 - Modified content.js to listen for clicks on `<a>` tags with `name="search"` and send timestamps to background.
 - Updated background.js to store click timestamps in `chrome.storage.local` and provide filtered counts for the last 1, 3, and 6 hours.
 - Modified popup.html and popup.js to display these click statistics.
+
+## v1.2.0 – 2025-08-27
+- Improved the user interface of the popup.html and styles.css to present click statistics in a dashboard-like format with distinct cards for each timeframe.
+- Updated popup.js to correctly target the new elements for displaying statistics.

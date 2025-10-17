@@ -1,16 +1,60 @@
 body {
-  font-family: Arial, sans-serif;
-  width: 200px;
-  padding: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 280px; /* Slightly wider for better layout */
+  padding: 15px;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
 }
 
-button {
-  padding: 5px 10px;
-  margin-top: 10px;
-  cursor: pointer;
+h1 {
+  font-size: 1.4em;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
-p {
-  margin-top: 10px;
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-card span:first-child {
+  font-weight: 600;
+  color: #555;
+}
+
+.stat-card span:last-child {
+  font-size: 1.2em;
   font-weight: bold;
+  color: #007bff; /* A nice blue for the count */
+}
+
+/* No buttons in this UI, but keeping the style for consistency if needed later */
+button {
+  padding: 8px 15px;
+  margin-top: 15px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
