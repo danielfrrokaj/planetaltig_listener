@@ -186,3 +186,8 @@ button:hover {
 .nav-link:hover {
     text-decoration: underline;
 }
+
+/* Style for button group in summary */
+#endShiftButton, #submitReportButton {
+    width: 100%;
+}

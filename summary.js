@@ -3,6 +3,7 @@
 // Global variables to store fetched data for summary generation
 let currentClicks = 0;
 let currentNotes = [];
+let currentSummaryText = '';
 
 // Function to fetch data and render all sections
 function fetchAndPrepareData() {
@@ -10,7 +11,6 @@ function fetchAndPrepareData() {
     chrome.runtime.sendMessage({ action: "get_stats" }, (response) => {
         if (response) {
             // Store data globally for summary generation
-            // Note: response.clickStats.totalClicks is the count of clicks in the last 6 hours
             currentClicks = response.clickStats.last6Hours; 
             currentNotes = response.pickupNotes;
         } else {
@@ -26,9 +26,56 @@ function handleEndShift() {
     const summaryOutput = document.getElementById('summaryOutput');
 
     // Use the globally stored data
-    const summaryText = generateShiftSummary(currentClicks, currentNotes, workingHours, callCount);
+    currentSummaryText = generateShiftSummary(currentClicks, currentNotes, workingHours, callCount);
     
-    summaryOutput.value = summaryText;
+    summaryOutput.value = currentSummaryText;
+}
+
+// Function to submit the report to Supabase
+async function handleSubmitReport() {
+    if (typeof supabase === 'undefined') {
+        alert("Supabase client is not initialized. Cannot submit report.");
+        return;
+    }
+
+    if (!currentSummaryText) {
+        alert("Please generate the shift summary first.");
+        return;
+    }
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+        alert("You must be logged in to submit a report. Please log in via the Supabase Auth UI if available.");
+        return;
+    }
+
+    const workingHours = document.getElementById('workingHoursInput').value.trim() || 'N/A';
+    const callCount = parseInt(document.getElementById('callCountInput').value) || 0;
+    
+    const totalPickups = currentNotes.length;
+    const totalAppointments = currentNotes.filter(note => note.is_appointment).length;
+
+    const reportData = {
+        user_id: user.id,
+        working_hours: workingHours,
+        total_calls: callCount,
+        total_clicks: currentClicks,
+        total_pickups: totalPickups,
+        total_appointments: totalAppointments,
+        report_notes: currentSummaryText,
+    };
+
+    const { error } = await supabase
+        .from('shift_reports')
+        .insert([reportData]);
+
+    if (error) {
+        console.error('Error submitting report:', error);
+        alert(`Failed to submit report: ${error.message}`);
+    } else {
+        alert("Shift report submitted successfully!");
+    }
 }
 
 
@@ -38,4 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Setup event listener for generating shift summary
     document.getElementById("endShiftButton").addEventListener('click', handleEndShift);
+    
+    // Setup event listener for submitting the report
+    document.getElementById("submitReportButton").addEventListener('click', handleSubmitReport);
 });
