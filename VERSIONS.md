@@ -28,3 +28,8 @@
 ## v1.5.0 – 2025-08-28
 - Corrected the productivity calculation in background.js to calculate success rates as a percentage: (Pickups / Total Clicks) * 100.
 - Updated labels in popup.html to reflect 'Success Rate'.
+
+## v1.6.0 – 2025-08-28
+- Added 'Shift Summary' section to popup.html with inputs for working hours and total calls.
+- Created shift_summary.js utility to format and generate the shift summary text based on stored clicks and pickup notes.
+- Updated popup.js and styles.css to integrate the new summary generation feature.

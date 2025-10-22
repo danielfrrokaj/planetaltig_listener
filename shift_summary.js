@@ -1,0 +1,46 @@
+// shift_summary.js
+
+/**
+ * Generates the final shift summary text.
+ * @param {number} totalClicks - Total search clicks recorded (last 6 hours).
+ * @param {Array<Object>} pickupNotes - List of recorded pickup notes.
+ * @param {string} workingHours - User-provided working hours string.
+ * @param {number} callCount - User-provided total calls count.
+ * @returns {string} The formatted summary text.
+ */
+function generateShiftSummary(totalClicks, pickupNotes, workingHours, callCount) {
+    const totalPickups = pickupNotes.length;
+    
+    const wrongNumberNotes = pickupNotes.filter(note => !note.is_appointment);
+    const appointmentNotes = pickupNotes.filter(note => note.is_appointment);
+
+    let summary = `Today’s feedback\n`;
+    summary += `Working hours: ${workingHours}\n`;
+    summary += `Calls: ${callCount}\n`;
+    summary += `Pick ups: ${totalPickups}\n\n`;
+    summary += `Total Search Clicks (Last 6h): ${totalClicks}\n\n`;
+
+    // 1. Wrong Number/General Pickups
+    if (wrongNumberNotes.length > 0) {
+        summary += `Wrong number (${wrongNumberNotes.length})\n`;
+        wrongNumberNotes.forEach(note => {
+            // Assuming the user enters Name and Phone in the note field
+            summary += `${note.note}\n\n`;
+        });
+    } else {
+        summary += `Wrong number (0)\n\n`;
+    }
+
+    // 2. Appointments
+    if (appointmentNotes.length > 0) {
+        summary += `Appointment (${appointmentNotes.length})\n`;
+        appointmentNotes.forEach(note => {
+            // Assuming the user enters Name and Phone in the note field
+            summary += `${note.note}\n\n`;
+        });
+    } else {
+        summary += `Appointment (0)\n\n`;
+    }
+
+    return summary.trim();
+}

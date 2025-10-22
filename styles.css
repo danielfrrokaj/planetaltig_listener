@@ -63,7 +63,7 @@ h2 {
     border-radius: 8px;
 }
 
-#pickupNoteInput {
+#pickupNoteInput, #summaryOutput {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -76,6 +76,21 @@ h2 {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.shift-input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.shift-input-group input[type="text"],
+.shift-input-group input[type="number"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 /* Button Styles */
