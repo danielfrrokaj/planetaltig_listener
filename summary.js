@@ -65,10 +65,11 @@ async function handleSubmitReport() {
     const { data, error } = await supabase
         .from('shift_reports')
         .insert([reportData])
-        .select(); // Added .select()
+        .select();
 
     if (error) {
-        console.error('Error submitting report:', error);
+        // Log the full error object for debugging
+        console.error('Supabase Submission Error:', error);
         alert(`Failed to submit report: ${error.message}`);
     } else {
         alert("Shift report submitted successfully!");
