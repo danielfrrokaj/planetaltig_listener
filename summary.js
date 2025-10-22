@@ -13,6 +13,9 @@ function fetchAndPrepareData() {
             // Store data globally for summary generation
             currentClicks = response.clickStats.last6Hours; 
             currentNotes = response.pickupNotes;
+            
+            // Automatically set Total Calls input to the number of search clicks
+            document.getElementById('callCountInput').value = currentClicks;
         } else {
             console.error("Failed to get stats.");
         }
@@ -22,11 +25,11 @@ function fetchAndPrepareData() {
 // Function to handle shift summary generation
 function handleEndShift() {
     const workingHours = document.getElementById('workingHoursInput').value.trim() || 'N/A';
-    const callCount = parseInt(document.getElementById('callCountInput').value) || 0;
+    // Use the value from the input field, which is now pre-populated with currentClicks
+    const callCount = parseInt(document.getElementById('callCountInput').value) || 0; 
     const summaryOutput = document.getElementById('summaryOutput');
 
-    // Use the globally stored data
-    // Note: currentClicks is passed as the first argument (totalSearches)
+    // Note: currentClicks is passed as the first argument (totalSearches) for summary generation
     currentSummaryText = generateShiftSummary(currentClicks, currentNotes, workingHours, callCount);
     
     summaryOutput.value = currentSummaryText;
@@ -41,7 +44,8 @@ async function handleSubmitReport() {
 
     const callerName = document.getElementById('callerNameInput').value;
     const workingHours = document.getElementById('workingHoursInput').value.trim() || 'N/A';
-    const callCount = parseInt(document.getElementById('callCountInput').value) || 0;
+    // Get the value from the input field (which holds the search count)
+    const callCount = parseInt(document.getElementById('callCountInput').value) || 0; 
     
     const totalPickups = currentNotes.length;
     const totalAppointments = currentNotes.filter(note => note.is_appointment).length;
@@ -49,11 +53,12 @@ async function handleSubmitReport() {
     const reportData = {
         caller_name: callerName,
         working_hours: workingHours,
-        total_calls: callCount,
-        total_searches: currentClicks, // Mapped from currentClicks to total_searches
+        total_calls: callCount, // This now stores the search count
         total_pickups: totalPickups,
         total_appointments: totalAppointments,
         report_notes: currentSummaryText,
+        // user_id is null as we are not authenticated
+        user_id: null, 
     };
 
     

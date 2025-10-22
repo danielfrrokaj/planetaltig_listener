@@ -97,3 +97,12 @@
 - Updated RLS policies to allow anonymous users to INSERT and SELECT data (`TO public WITH CHECK (true)`).
 - Deleted authentication files (`login.html`, `login.js`, `supabase_auth.js`).
 - Reverted `supabase_api.js`, `summary.js`, `popup.html`, `popup.js`, `summary.html`, and `styles.css` to remove all authentication checks and logic.
+
+## v2.3.0 – 2025-08-30
+- Updated the database schema for `shift_reports` to remove the `total_searches` column, relying only on the manually entered `total_calls` for the dedicated column, while keeping search click tracking for the dashboard and including the metric in the `report_notes` text.
+- Updated `summary.js` to remove `total_searches` from the submission payload.
+
+## v2.4.0 – 2025-08-30
+- Reintroduced a nullable `user_id` column to the `shift_reports` table with a foreign key constraint to `auth.users`.
+- Updated `summary.js` to automatically populate the `Total Calls` input field with the tracked search clicks (`currentClicks`) upon loading the summary page.
+- Ensured the submission payload sends `currentClicks` value to the `total_calls` database column.
