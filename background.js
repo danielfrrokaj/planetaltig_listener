@@ -26,16 +26,17 @@ function filterClicks(clicks, hours) {
 
 // Helper function to calculate productivity rates
 function calculateProductivity(clicks, pickups) {
+    // We should only consider clicks that are within the 6-hour window, 
+    // which is what the 'clicks' array already contains.
     const totalClicks = clicks.length;
     const totalPickups = pickups.length;
     const appointmentPickups = pickups.filter(p => p.is_appointment).length;
 
-    // Calculate rates: total unaswered_clicks / pickups
-    // Assuming 'total unaswered_clicks' refers to the total clicks stored (last 6 hours)
-    const pickupRate = totalPickups > 0 ? (totalClicks / totalPickups).toFixed(2) : 'N/A';
+    // Calculate Success Rate: (Pickups / Total Clicks) * 100
+    const pickupRate = totalClicks > 0 ? ((totalPickups / totalClicks) * 100).toFixed(2) + '%' : 'N/A';
     
-    // Calculate rates: total unaswered_clicks / is_appointmet_true
-    const appointmentRate = appointmentPickups > 0 ? (totalClicks / appointmentPickups).toFixed(2) : 'N/A';
+    // Calculate Appointment Success Rate: (Appointments / Total Clicks) * 100
+    const appointmentRate = totalClicks > 0 ? ((appointmentPickups / totalClicks) * 100).toFixed(2) + '%' : 'N/A';
 
     return {
         totalPickups,

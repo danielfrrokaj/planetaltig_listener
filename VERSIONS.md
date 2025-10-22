@@ -24,3 +24,7 @@
 - Added functionality to track and manage 'pickup notes' including a boolean 'is_appointment' flag.
 - Updated background.js to store pickup notes, handle saving and deletion, and calculate productivity rates (Total Clicks / Total Pickups and Total Clicks / Appointments).
 - Updated popup.html, popup.js, and styles.css to include a form for adding notes, display productivity metrics, and list recent notes with a delete button.
+
+## v1.5.0 – 2025-08-28
+- Corrected the productivity calculation in background.js to calculate success rates as a percentage: (Pickups / Total Clicks) * 100.
+- Updated labels in popup.html to reflect 'Success Rate'.
