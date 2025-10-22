@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="nav-link-container">
+    <a href="summary.html" class="nav-link">Go to Shift Summary →</a>
+  </div>
+
   <h1>Website Listener</h1>
   
   <h2>Search Clicks (Last 6h)</h2>
@@ -44,20 +48,6 @@
   <h2>Recent Pickups</h2>
   <div id="pickupNotesList" class="notes-list">
     <p class="no-notes">No pickups recorded yet.</p>
-  </div>
-
-  <h2>Shift Summary</h2>
-  <div class="note-form-container">
-    <div class="shift-input-group">
-        <label for="workingHoursInput">Working Hours:</label>
-        <input type="text" id="workingHoursInput" placeholder="e.g., 9:00 - 17:00">
-    </div>
-    <div class="shift-input-group">
-        <label for="callCountInput">Total Calls:</label>
-        <input type="number" id="callCountInput" placeholder="e.g., 360" value="0">
-    </div>
-    <button id="endShiftButton">Generate Shift Summary</button>
-    <textarea id="summaryOutput" rows="10" readonly placeholder="Summary will appear here..."></textarea>
   </div>
 
   <script src="shift_summary.js"></script>

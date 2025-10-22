@@ -169,3 +169,20 @@ button:hover {
     color: #777;
     padding: 10px;
 }
+
+/* Navigation Link Styles */
+.nav-link-container {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}

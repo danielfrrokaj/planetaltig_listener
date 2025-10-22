@@ -79,19 +79,11 @@ function handleSaveNote() {
     });
 }
 
-// Global variables to store fetched data for summary generation
-let currentClicks = [];
-let currentNotes = [];
-
 // Function to fetch data and render all sections
 function fetchAndRenderStats() {
     // Request all stats and notes from the background script
     chrome.runtime.sendMessage({ action: "get_stats" }, (response) => {
         if (response) {
-            // Store data globally for summary generation
-            currentClicks = response.clickStats.totalClicks;
-            currentNotes = response.pickupNotes;
-
             // 1. Render Click Stats
             document.getElementById("clicksLastHour").querySelector('.stat-value').textContent = response.clickStats.lastHour;
             document.getElementById("clicksLast3Hours").querySelector('.stat-value').textContent = response.clickStats.last3Hours;
@@ -111,18 +103,6 @@ function fetchAndRenderStats() {
     });
 }
 
-// Function to handle shift summary generation
-function handleEndShift() {
-    const workingHours = document.getElementById('workingHoursInput').value.trim() || 'N/A';
-    const callCount = parseInt(document.getElementById('callCountInput').value) || 0;
-    const summaryOutput = document.getElementById('summaryOutput');
-
-    // Use the globally stored data (updated by fetchAndRenderStats)
-    const summaryText = generateShiftSummary(currentClicks, currentNotes, workingHours, callCount);
-    
-    summaryOutput.value = summaryText;
-}
-
 
 document.addEventListener("DOMContentLoaded", () => {
     // Initial data fetch and render
@@ -130,7 +110,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Setup event listener for saving notes
     document.getElementById("saveNoteButton").addEventListener('click', handleSaveNote);
-
-    // Setup event listener for generating shift summary
-    document.getElementById("endShiftButton").addEventListener('click', handleEndShift);
 });

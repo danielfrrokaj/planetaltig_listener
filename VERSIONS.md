@@ -33,3 +33,7 @@
 - Added 'Shift Summary' section to popup.html with inputs for working hours and total calls.
 - Created shift_summary.js utility to format and generate the shift summary text based on stored clicks and pickup notes.
 - Updated popup.js and styles.css to integrate the new summary generation feature.
+
+## v1.7.0 – 2025-08-29
+- Moved the Shift Summary feature to a dedicated page (summary.html and summary.js) accessible via a navigation link from the main popup.
+- Updated popup.html and popup.js to remove summary elements and logic.
