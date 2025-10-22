@@ -43,13 +43,7 @@ async function handleSubmitReport() {
         return;
     }
 
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
-        alert("You must be logged in to submit a report. Please log in via the Supabase Auth UI if available.");
-        return;
-    }
-
+    const callerName = document.getElementById('callerNameInput').value;
     const workingHours = document.getElementById('workingHoursInput').value.trim() || 'N/A';
     const callCount = parseInt(document.getElementById('callCountInput').value) || 0;
     
@@ -57,7 +51,7 @@ async function handleSubmitReport() {
     const totalAppointments = currentNotes.filter(note => note.is_appointment).length;
 
     const reportData = {
-        user_id: user.id,
+        caller_name: callerName,
         working_hours: workingHours,
         total_calls: callCount,
         total_clicks: currentClicks,
@@ -66,6 +60,8 @@ async function handleSubmitReport() {
         report_notes: currentSummaryText,
     };
 
+    // Note: Authentication check is removed as per new requirements.
+    
     const { error } = await supabase
         .from('shift_reports')
         .insert([reportData]);
