@@ -63,7 +63,13 @@ h2 {
     border-radius: 8px;
 }
 
-#pickupNoteInput, #summaryOutput {
+.note-form-container label {
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+#pickupNoteInput, #summaryOutput, 
+#firstNameInput, #lastNameInput, #avatarUrlInput {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -172,6 +178,12 @@ button:hover {
 }
 
 /* Navigation Link Styles */
+.top-nav-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
 .nav-link-container {
     text-align: right;
     margin-bottom: 10px;
@@ -188,6 +200,10 @@ button:hover {
     text-decoration: underline;
 }
 
+.gear-icon {
+    font-size: 0.9em;
+}
+
 /* Style for button group in summary */
 #endShiftButton, #submitReportButton {
     width: 100%;
@@ -201,4 +217,10 @@ button:hover {
     margin-bottom: 10px;
     padding: 5px 0;
     border-bottom: 1px solid #eee;
+}
+
+.status-message {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
 }
