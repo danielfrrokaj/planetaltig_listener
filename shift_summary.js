@@ -16,9 +16,9 @@ function generateShiftSummary(totalSearches, pickupNotes, workingHours, callCoun
 
     let summary = `Today’s feedback\n`;
     summary += `Working hours: ${workingHours}\n`;
-    summary += `Calls: ${callCount}\n`;
+    summary += `Calls Submitted: ${callCount}\n`; // Changed from Calls: ${callCount}
     summary += `Pick ups: ${totalPickups}\n\n`;
-    summary += `Total Search Clicks (Last 6h): ${totalSearches}\n\n`;
+    summary += `Total Search Clicks (Last 6h): ${totalSearches}\n\n`; // Keeping this line for context, but changing the label below
 
     // 1. Wrong Number/General Pickups
     if (wrongNumberNotes.length > 0) {
