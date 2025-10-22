@@ -37,3 +37,9 @@
 ## v1.7.0 – 2025-08-29
 - Moved the Shift Summary feature to a dedicated page (summary.html and summary.js) accessible via a navigation link from the main popup.
 - Updated popup.html and popup.js to remove summary elements and logic.
+
+## v1.8.0 – 2025-08-29
+- Integrated Supabase for shift report storage.
+- Dropped old profiles table and created `shift_reports` table with RLS policies allowing authenticated users to read all reports.
+- Added 'Submit Report' functionality to summary.js using Supabase client.
+- Fixed Supabase client initialization issue in vanilla JS extension by loading the library via CDN and updating manifest.json CSP.
