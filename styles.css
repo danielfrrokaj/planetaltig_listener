@@ -192,3 +192,13 @@ button:hover {
 #endShiftButton, #submitReportButton {
     width: 100%;
 }
+
+.auth-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}

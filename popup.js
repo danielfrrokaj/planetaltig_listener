@@ -103,8 +103,26 @@ function fetchAndRenderStats() {
     });
 }
 
+async function handleSignOut() {
+    await signOut();
+    window.location.href = 'login.html';
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    const session = await getSession();
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const signOutButton = document.getElementById('signOutButton');
+
+    if (!session) {
+        // If not authenticated, redirect to login page
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Display username and set up sign out
+    usernameDisplay.textContent = `Logged in as: ${session.username}`;
+    signOutButton.addEventListener('click', handleSignOut);
+
     // Initial data fetch and render
     fetchAndRenderStats();
 

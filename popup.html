@@ -10,6 +10,11 @@
     <a href="summary.html" class="nav-link">Go to Shift Summary →</a>
   </div>
 
+  <div id="authStatus" class="auth-status">
+    <span id="usernameDisplay"></span>
+    <button id="signOutButton" class="delete-button">Sign Out</button>
+  </div>
+
   <h1>Website Listener</h1>
   
   <h2>Search Clicks (Last 6h)</h2>
@@ -50,6 +55,7 @@
     <p class="no-notes">No pickups recorded yet.</p>
   </div>
 
+  <script src="supabase_auth.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

@@ -6,13 +6,16 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 /**
  * Submits a shift report directly to the Supabase PostgREST API using fetch.
- * This method uses the anonymous key for public insertion.
  * 
  * @param {Object} reportData - The data object to insert into 'shift_reports'.
+ * @param {string} [jwtToken] - Optional JWT token for authenticated requests.
  * @returns {Promise<{data: Object|null, error: Object|null}>}
  */
-async function submitShiftReport(reportData) {
+async function submitShiftReport(reportData, jwtToken) {
     const url = `${SUPABASE_URL}/rest/v1/shift_reports`;
+    
+    // Determine Authorization header: use JWT if provided, otherwise fall back to ANON key
+    const authorizationHeader = jwtToken ? `Bearer ${jwtToken}` : `Bearer ${SUPABASE_ANON_KEY}`;
     
     try {
         const response = await fetch(url, {
@@ -20,7 +23,7 @@ async function submitShiftReport(reportData) {
             headers: {
                 'Content-Type': 'application/json',
                 'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, // Use ANON key for public access
+                'Authorization': authorizationHeader,
                 'Prefer': 'return=representation' // Ensures the inserted data is returned
             },
             body: JSON.stringify(reportData)
