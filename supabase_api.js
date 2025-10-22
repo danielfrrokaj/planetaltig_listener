@@ -6,8 +6,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 /**
  * Submits a shift report directly to the Supabase PostgREST API using fetch.
- * This method is preferred over using the full Supabase JS client library 
- * in a vanilla MV3 extension environment for simplicity and CSP compliance.
+ * This method uses the anonymous key for public insertion.
  * 
  * @param {Object} reportData - The data object to insert into 'shift_reports'.
  * @returns {Promise<{data: Object|null, error: Object|null}>}
@@ -21,7 +20,7 @@ async function submitShiftReport(reportData) {
             headers: {
                 'Content-Type': 'application/json',
                 'apikey': SUPABASE_ANON_KEY,
-                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, // Use ANON key for public access
                 'Prefer': 'return=representation' // Ensures the inserted data is returned
             },
             body: JSON.stringify(reportData)

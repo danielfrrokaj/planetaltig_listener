@@ -34,8 +34,6 @@ function handleEndShift() {
 
 // Function to submit the report to Supabase
 async function handleSubmitReport() {
-    // We no longer check for 'supabase' global, as we use the imported submitShiftReport function.
-
     if (!currentSummaryText) {
         alert("Please generate the shift summary first.");
         return;
@@ -59,7 +57,7 @@ async function handleSubmitReport() {
     };
 
     
-    // Use the native fetch utility function
+    // Use the native fetch utility function (no token needed)
     const { data, error } = await submitShiftReport(reportData);
 
     if (error) {
@@ -81,4 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Setup event listener for submitting the report
     document.getElementById("submitReportButton").addEventListener('click', handleSubmitReport);
+    
+    // Remove sign out listener as authentication is removed
 });

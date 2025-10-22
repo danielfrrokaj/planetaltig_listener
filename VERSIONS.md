@@ -82,3 +82,18 @@
 - Created `supabase_api.js` to handle direct API calls for submitting shift reports.
 - Removed deprecated files `lib/supabase.js` and `supabase_client.js`.
 - Updated `summary.js`, `summary.html`, `popup.html`, and `manifest.json` to reflect the new API integration method and added necessary `host_permissions` to the manifest.
+
+## v2.1.0 – 2025-08-30
+- Implemented user authentication to resolve HTTP 401 errors caused by the new database schema requiring a non-null `user_id`.
+- Applied new database schema requiring `user_id` NOT NULL and enabled RLS policies restricting inserts to authenticated users (who must provide their own `user_id`).
+- Created `login.html` and `login.js` for user sign-in using direct Supabase Auth API calls.
+- Created `supabase_auth.js` to manage session storage (`access_token`, `user_id`) in `chrome.storage.local`.
+- Updated `popup.html`, `popup.js`, `summary.html`, and `summary.js` to enforce authentication checks, redirect unauthenticated users to `login.html`, and include sign-out functionality.
+- Modified `supabase_api.js` and `summary.js` to use the authenticated user's JWT for authorization and include the required `user_id` in the report submission payload.
+
+## v2.2.0 – 2025-08-30
+- Reverted authentication requirements to allow public, unauthenticated data submission.
+- Updated the `shift_reports` schema to remove the `user_id` column and its foreign key constraint.
+- Updated RLS policies to allow anonymous users to INSERT and SELECT data (`TO public WITH CHECK (true)`).
+- Deleted authentication files (`login.html`, `login.js`, `supabase_auth.js`).
+- Reverted `supabase_api.js`, `summary.js`, `popup.html`, `popup.js`, `summary.html`, and `styles.css` to remove all authentication checks and logic.
