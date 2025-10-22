@@ -19,3 +19,8 @@
 
 ## v1.3.0 – 2025-08-27
 - Renamed the extension from "Dyad Chrome Extension Template" to "Website listener" in manifest.json and popup.html.
+
+## v1.4.0 – 2025-08-28
+- Added functionality to track and manage 'pickup notes' including a boolean 'is_appointment' flag.
+- Updated background.js to store pickup notes, handle saving and deletion, and calculate productivity rates (Total Clicks / Total Pickups and Total Clicks / Appointments).
+- Updated popup.html, popup.js, and styles.css to include a form for adding notes, display productivity metrics, and list recent notes with a delete button.

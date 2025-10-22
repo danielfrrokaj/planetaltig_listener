@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  width: 280px; /* Slightly wider for better layout */
+  width: 320px; /* Increased width to accommodate new elements */
   padding: 15px;
   background-color: #f4f7f6;
   color: #333;
@@ -14,38 +14,73 @@ h1 {
   text-align: center;
 }
 
+h2 {
+    font-size: 1.1em;
+    color: #2c3e50;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .stat-card {
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 12px 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 10px 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .stat-card span:first-child {
-  font-weight: 600;
+  font-weight: 500;
   color: #555;
 }
 
-.stat-card span:last-child {
-  font-size: 1.2em;
+.stat-value {
+  font-size: 1.1em;
   font-weight: bold;
   color: #007bff; /* A nice blue for the count */
 }
 
-/* No buttons in this UI, but keeping the style for consistency if needed later */
+/* Note Form Styles */
+.note-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+#pickupNoteInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.appointment-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Button Styles */
 button {
   padding: 8px 15px;
-  margin-top: 15px;
   cursor: pointer;
   background-color: #007bff;
   color: white;
@@ -57,4 +92,65 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Notes List Styles */
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.note-item {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.note-content {
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #555;
+}
+
+.appointment-tag {
+    background-color: #28a745;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    font-weight: normal;
+}
+
+.no-notes {
+    text-align: center;
+    color: #777;
+    padding: 10px;
 }

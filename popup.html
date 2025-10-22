@@ -7,16 +7,43 @@
 </head>
 <body>
   <h1>Website Listener</h1>
+  
+  <h2>Search Clicks (Last 6h)</h2>
   <div class="dashboard-container">
     <div class="stat-card" id="clicksLastHour">
-      <span>Last 1 hour:</span> <span>0</span>
+      <span>Last 1 hour:</span> <span class="stat-value">0</span>
     </div>
     <div class="stat-card" id="clicksLast3Hours">
-      <span>Last 3 hours:</span> <span>0</span>
+      <span>Last 3 hours:</span> <span class="stat-value">0</span>
     </div>
     <div class="stat-card" id="clicksLast6Hours">
-      <span>Last 6 hours:</span> <span>0</span>
+      <span>Last 6 hours:</span> <span class="stat-value">0</span>
     </div>
+  </div>
+
+  <h2>Productivity</h2>
+  <div class="dashboard-container">
+    <div class="stat-card" id="pickupRate">
+      <span>Clicks / Pickups:</span> <span class="stat-value">N/A</span>
+    </div>
+    <div class="stat-card" id="appointmentRate">
+      <span>Clicks / Appointments:</span> <span class="stat-value">N/A</span>
+    </div>
+  </div>
+
+  <h2>Add Pickup Note</h2>
+  <div class="note-form-container">
+    <textarea id="pickupNoteInput" placeholder="Add pickup notes..." rows="3"></textarea>
+    <div class="appointment-toggle">
+      <input type="checkbox" id="isAppointmentCheckbox">
+      <label for="isAppointmentCheckbox">Is Appointment?</label>
+    </div>
+    <button id="saveNoteButton">Save Note</button>
+  </div>
+
+  <h2>Recent Pickups</h2>
+  <div id="pickupNotesList" class="notes-list">
+    <p class="no-notes">No pickups recorded yet.</p>
   </div>
 
   <script src="popup.js"></script>
