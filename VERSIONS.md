@@ -43,3 +43,42 @@
 - Dropped old profiles table and created `shift_reports` table with RLS policies allowing authenticated users to read all reports.
 - Added 'Submit Report' functionality to summary.js using Supabase client.
 - Fixed Supabase client initialization issue in vanilla JS extension by loading the library via CDN and updating manifest.json CSP.
+
+## v1.8.1 – 2025-08-29
+- Fixed Manifest V3 CSP error by removing the insecure CDN source. Updated popup.html and summary.html to load the Supabase library from a local file (`lib/supabase.js`) to comply with the stricter CSP rules.
+
+## v1.8.2 – 2025-08-29
+- Implemented a mock Supabase client in `lib/supabase.js` to define `createClient` globally, resolving the "client not initialized" error and allowing the submission flow to be tested without the full UMD bundle.
+
+## v1.9.0 – 2025-08-29
+- Redefined the `shift_reports` database schema to remove the dependency on Supabase authentication (`user_id`).
+- Replaced `user_id` with a `caller_name` column using a new ENUM type ('caller1', 'caller2', 'caller3').
+- Updated RLS policies to allow anonymous inserts and public reads.
+- Modified `summary.html` to include a caller name selection dropdown.
+- Updated `summary.js` to use the selected caller name for report submission instead of fetching the authenticated user ID.
+
+## v1.9.1 – 2025-08-29
+- Clarified the distinction between automatically tracked search clicks and manually entered calls.
+- Renamed the database column `total_clicks` to `total_searches` in the `shift_reports` table.
+- Updated `shift_summary.js` and `summary.js` to use `totalSearches` for clarity when submitting data.
+
+## v1.9.2 – 2025-08-29
+- Disabled Row Level Security (RLS) on the `shift_reports` table and dropped all associated policies to ensure public insertion access for testing purposes.
+
+## v1.9.3 – 2025-08-29
+- Explicitly dropped and recreated the `caller_enum` type and the `shift_reports` table to guarantee schema integrity and resolve persistent insertion failures. RLS remains disabled.
+
+## v1.9.4 – 2025-08-29
+- Updated the Supabase insertion query in `summary.js` to include `.select()` after `.insert()` for improved compatibility and adherence to Supabase best practices.
+
+## v1.9.5 – 2025-08-29
+- Updated the mock Supabase client in `lib/supabase.js` to correctly simulate the asynchronous response structure expected by the `.insert().select()` chain, ensuring the success path in `summary.js` is correctly executed.
+
+## v1.9.6 – 2025-08-29
+- Enhanced error logging in `summary.js` to explicitly log the full Supabase error object to the console if submission fails, aiding in debugging.
+
+## v2.0.0 – 2025-08-29
+- Refactored Supabase integration to use native `fetch` API directly against the PostgREST endpoint, eliminating the need for the large `@supabase/supabase-js` library and resolving potential issues with the mock client and MV3 CSP.
+- Created `supabase_api.js` to handle direct API calls for submitting shift reports.
+- Removed deprecated files `lib/supabase.js` and `supabase_client.js`.
+- Updated `summary.js`, `summary.html`, `popup.html`, and `manifest.json` to reflect the new API integration method and added necessary `host_permissions` to the manifest.

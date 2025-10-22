@@ -34,10 +34,7 @@ function handleEndShift() {
 
 // Function to submit the report to Supabase
 async function handleSubmitReport() {
-    if (typeof supabase === 'undefined') {
-        alert("Supabase client is not initialized. Cannot submit report.");
-        return;
-    }
+    // We no longer check for 'supabase' global, as we use the imported submitShiftReport function.
 
     if (!currentSummaryText) {
         alert("Please generate the shift summary first.");
@@ -62,10 +59,8 @@ async function handleSubmitReport() {
     };
 
     
-    const { data, error } = await supabase
-        .from('shift_reports')
-        .insert([reportData])
-        .select();
+    // Use the native fetch utility function
+    const { data, error } = await submitShiftReport(reportData);
 
     if (error) {
         // Log the full error object for debugging

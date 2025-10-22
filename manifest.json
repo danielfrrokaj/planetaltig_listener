@@ -4,6 +4,7 @@
   "version": "1.1.0",
   "description": "Minimal Chrome extension template for Dyad AI",
   "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": ["https://yxxladzheqoeecopdduv.supabase.co/*"],
   "background": {
     "service_worker": "background.js"
   },
