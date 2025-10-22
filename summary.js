@@ -26,6 +26,7 @@ function handleEndShift() {
     const summaryOutput = document.getElementById('summaryOutput');
 
     // Use the globally stored data
+    // Note: currentClicks is passed as the first argument (totalSearches)
     currentSummaryText = generateShiftSummary(currentClicks, currentNotes, workingHours, callCount);
     
     summaryOutput.value = currentSummaryText;
@@ -54,13 +55,12 @@ async function handleSubmitReport() {
         caller_name: callerName,
         working_hours: workingHours,
         total_calls: callCount,
-        total_clicks: currentClicks,
+        total_searches: currentClicks, // Mapped from currentClicks to total_searches
         total_pickups: totalPickups,
         total_appointments: totalAppointments,
         report_notes: currentSummaryText,
     };
 
-    // Note: Authentication check is removed as per new requirements.
     
     const { error } = await supabase
         .from('shift_reports')

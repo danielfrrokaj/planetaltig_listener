@@ -2,13 +2,13 @@
 
 /**
  * Generates the final shift summary text.
- * @param {number} totalClicks - Total search clicks recorded (last 6 hours).
+ * @param {number} totalSearches - Total search clicks recorded (last 6 hours).
  * @param {Array<Object>} pickupNotes - List of recorded pickup notes.
  * @param {string} workingHours - User-provided working hours string.
  * @param {number} callCount - User-provided total calls count.
  * @returns {string} The formatted summary text.
  */
-function generateShiftSummary(totalClicks, pickupNotes, workingHours, callCount) {
+function generateShiftSummary(totalSearches, pickupNotes, workingHours, callCount) {
     const totalPickups = pickupNotes.length;
     
     const wrongNumberNotes = pickupNotes.filter(note => !note.is_appointment);
@@ -18,7 +18,7 @@ function generateShiftSummary(totalClicks, pickupNotes, workingHours, callCount)
     summary += `Working hours: ${workingHours}\n`;
     summary += `Calls: ${callCount}\n`;
     summary += `Pick ups: ${totalPickups}\n\n`;
-    summary += `Total Search Clicks (Last 6h): ${totalClicks}\n\n`;
+    summary += `Total Search Clicks (Last 6h): ${totalSearches}\n\n`;
 
     // 1. Wrong Number/General Pickups
     if (wrongNumberNotes.length > 0) {
