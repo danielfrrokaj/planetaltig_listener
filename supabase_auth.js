@@ -2,19 +2,32 @@
 
 (function() {
     const AUTH_STORAGE_KEY = 'supabaseSession';
+    const SESSION_DURATION_MS = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
 
     // Supabase Project Configuration (same as supabase_api.js)
     const SUPABASE_URL = 'https://yxxladzheqoeecopdduv.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl4eGxhZHpoZXFvZWVjb3BkZHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA5OTU1ODgsImV4cCI6MjA3NjU3MTU4OH0.zw6oBV_9CFkUPSduforms1oeDuXd66P8wWWF27M7Mio';
 
     /**
-     * Retrieves the current session data from storage.
+     * Retrieves the current session data from storage, checking for client-side expiration.
      * @returns {Promise<{accessToken: string, userId: string, username: string}|null>}
      */
     function getSession() {
         return new Promise(resolve => {
             chrome.storage.local.get(AUTH_STORAGE_KEY, (data) => {
-                resolve(data[AUTH_STORAGE_KEY] || null);
+                const session = data[AUTH_STORAGE_KEY];
+                
+                if (session) {
+                    const now = Date.now();
+                    // Check if the session has expired (6 hours since creation)
+                    if (now - session.timestamp > SESSION_DURATION_MS) {
+                        console.log("Session expired client-side. Forcing re-login.");
+                        clearSession();
+                        resolve(null);
+                        return;
+                    }
+                }
+                resolve(session || null);
             });
         });
     }
@@ -25,6 +38,8 @@
      * @returns {Promise<void>}
      */
     function saveSession(session) {
+        // Add creation timestamp
+        session.timestamp = Date.now();
         return new Promise(resolve => {
             chrome.storage.local.set({ [AUTH_STORAGE_KEY]: session }, resolve);
         });
