@@ -9,7 +9,6 @@ Follow these simple steps to install the extension:
 ### Step 1: Download the Extension
 Download the extension package: [`extension.zip`](https://github.com/danielfrrokaj/repository/raw/main/extension.zip)
 
-> **Note**: Replace `username/repository/main` with your actual GitHub repository path.
 
 ### Step 2: Extract the ZIP File
 1. Locate the downloaded `extension.zip` and extract it
