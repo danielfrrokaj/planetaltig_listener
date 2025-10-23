@@ -7,7 +7,7 @@ A Chrome extension that enhances your browsing experience.
 Follow these simple steps to install the extension:
 
 ### Step 1: Download the Extension
-Download the extension package: [`extension.zip`](https://github.com/username/repository/raw/main/extension.zip)
+Download the extension package: [`extension.zip`](https://github.com/danielfrrokaj/repository/raw/main/extension.zip)
 
 > **Note**: Replace `username/repository/main` with your actual GitHub repository path.
 
