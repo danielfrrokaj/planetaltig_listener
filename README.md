@@ -7,7 +7,7 @@ A Chrome extension that enhances your browsing experience.
 Follow these simple steps to install the extension:
 
 ### Step 1: Download the Extension
-Download the extension package: [`extension.zip`](https://github.com/danielfrrokaj/repository/raw/main/extension.zip)
+Download the extension package: [`extension.zip`](https://github.com/danielfrrokaj/planetaltig_listener/raw/main/extension.zip))
 
 
 ### Step 2: Extract the ZIP File
