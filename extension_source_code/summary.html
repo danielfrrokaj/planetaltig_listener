@@ -1,42 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Shift Summary</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="nav-link-container">
-    <a href="popup.html" class="nav-link">← Back to Dashboard</a>
-  </div>
-  
-  <h1>Shift Summary</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Shift Summary</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="nav-link-container">
+            <a href="popup.html" class="nav-link">← Back to Dashboard</a>
+        </div>
 
-  <div class="note-form-container">
-    <p>This summary uses the total search clicks (last 6 hours) and all recorded pickups.</p>
-    
-    <div class="shift-input-group">
-        <label for="callerNameDisplay">Caller:</label>
-        <span id="callerNameDisplay">Loading...</span>
-    </div>
-    
-    <div class="shift-input-group">
-        <label for="workingHoursInput">Working Hours:</label>
-        <input type="number" id="workingHoursInput" placeholder="e.g., 8 (hours)">
-    </div>
-    <div class="shift-input-group">
-        <label for="callCountInput">Total Calls:</label>
-        <input type="number" id="callCountInput" placeholder="e.g., 360" value="0">
-    </div>
-    <button id="endShiftButton">Generate Shift Summary</button>
-    <button id="submitReportButton" style="background-color: #28a745;">Submit Report</button>
-    <textarea id="summaryOutput" rows="10" readonly placeholder="Summary will appear here..."></textarea>
-  </div>
+        <h1>Shift Summary</h1>
 
-  <!-- Load necessary scripts -->
-  <script src="supabase_auth.js"></script>
-  <script src="shift_summary.js"></script>
-  <script src="supabase_api.js"></script>
-  <script src="summary.js"></script>
-</body>
+        <div class="note-form-container">
+            <p>
+                This summary uses the total number of calls made, and it
+                generates a report for all pickups and appointents.
+            </p>
+
+            <div class="shift-input-group">
+                <label for="callerNameDisplay">Caller:</label>
+                <span id="callerNameDisplay">Loading...</span>
+            </div>
+
+            <div class="shift-input-group">
+                <label for="workingHoursInput">Working Hours:</label>
+                <input
+                    type="number"
+                    id="workingHoursInput"
+                    placeholder="e.g., 8 (hours)"
+                />
+            </div>
+            <div class="shift-input-group">
+                <label for="callCountInput">Total Calls:</label>
+                <input
+                    type="number"
+                    id="callCountInput"
+                    placeholder="e.g., 360"
+                    value="0"
+                />
+            </div>
+            <button id="endShiftButton">Generate Shift Summary</button>
+            <button id="submitReportButton" style="background-color: #28a745">
+                Submit Report
+            </button>
+            <textarea
+                id="summaryOutput"
+                rows="10"
+                readonly
+                placeholder="Summary will appear here..."
+            ></textarea>
+        </div>
+
+        <!-- Load necessary scripts -->
+        <script src="supabase_auth.js"></script>
+        <script src="shift_summary.js"></script>
+        <script src="supabase_api.js"></script>
+        <script src="summary.js"></script>
+    </body>
 </html>
